@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" 
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" 
+        crossorigin="anonymous">
+        </script>
+        <script type="module">
+            import TitledBlock from "../content_blocks/block_with_header.js";
+            let block = new TitledBlock("new_block");
+            block.set_year("2023");
+            block.set_title("title of box 1");
+            block.set_text("content of box 1");
+            document.body.appendChild(block.getDOM());
+            block.setStyle([['border', 'dashed black 2px']]);
+            block.get_text_obj().setStyle([['border-top', 'solid black 2px']]);
+
+            import ToggleBox from "../content_blocks/toggle_box.js"
+            let block_2 = new ToggleBox("toggle_box");
+            block_2.set_year("year")
+            block_2.set_title("title");
+            block_2.set_text("this place is for the place where no one want to go to and this is");
+            block_2.setStyle([['border', 'solid black 2px'], ['width', "50%"]]);
+            document.body.appendChild(block_2.getDOM());
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
