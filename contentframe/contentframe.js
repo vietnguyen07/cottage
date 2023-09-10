@@ -39,6 +39,9 @@ export default class ContentDisplay extends DomEle
         this.content_form = content_form;
         this._create_fetch_channel(this.content_form);
 
+        // Display loading message
+        this.display_content(`<div style="text-align='center'">loading.....</div>`);
+
     }
 
     _create_fetch_channel(content_form)

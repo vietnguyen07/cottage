@@ -18,8 +18,11 @@
             let block_2 = new ToggleBox("toggle_box");
             block_2.set_year("year")
             block_2.set_title("title");
-            block_2.set_text("this place is for the place where no one want to go to and this is");
-            block_2.setStyle([['border', 'solid black 2px'], ['width', "50%"]]);
+            block_2.set_text("this place is for the place where no one want to go to and this is asdf asdfa sd\
+            adfasdfasd asdf asdf asd asd \
+            asdfasdf sdfasdf asd");
+            block_2.setStyle([['border', 'solid black 2px'], ['width', "50%"], ['word-wrap', 'break-word']]);
+            block_2.get_spine_obj().setStyle([['backgroundColor', "red"], ['width', '1em']]);
             document.body.appendChild(block_2.getDOM());
         </script>
     </head>
