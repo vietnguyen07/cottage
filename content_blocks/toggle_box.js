@@ -6,9 +6,15 @@ export default class ToggleBox extends TitledBlock
     {
         super(p_name);
         this._speed = 0;
+        this._close_style = [
+            ["height", "1.2em"],
+            ["overflow", "hidden"],
+            ["textOverflow", "ellipsis"],
+            ["whiteSpace", "nowrap"]
+        ];
         this.get_title_obj().getDOM().addEventListener("click", this._toggle.bind(this));
         this.get_spine_obj().getDOM().addEventListener("click", this._toggle.bind(this));
-        $(this.get_text_obj().getDOM()).hide();
+        this.get_text_obj().setStyle(this._close_style);
         this._is_hide = true;
         this._process_spine_bg();
     }
@@ -21,7 +27,14 @@ export default class ToggleBox extends TitledBlock
     _toggle()
     {
         let hidden_space = this.get_text_obj().getDOM();
-        $(hidden_space).toggle(this._speed);
+        if (!this._is_hide){
+            $(hidden_space).animate({height: "1.2em"}, 200);
+            hidden_space.style.whiteSpace = "nowrap";
+        }
+        else {
+            $(hidden_space).animate({height: "100%"}, 200);
+            hidden_space.style.whiteSpace = "normal";
+        }
         this._draw_folding();
         this._is_hide = !this._is_hide;
         this._process_spine_bg();
