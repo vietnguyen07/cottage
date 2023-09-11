@@ -26,7 +26,18 @@
             block_2.get_spine_obj().setStyle([['backgroundColor', "red"], ['width', '1em']]);
             document.body.appendChild(block_2.getDOM());
         </script>
+        <script>
+            $( "#target" ).toggle(function() {
+            alert( "First handler for .toggle() called." );
+            }, function() {
+            alert( "Second handler for .toggle() called." );
+            });
+        </script>
     </head>
+    
     <body>
+        <div id="target">
+            Click here
+          </div>
     </body>
 </html>
