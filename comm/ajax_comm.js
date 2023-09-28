@@ -1,10 +1,9 @@
 
-
 export default class AjaxAdapter
 {   
     /**
      * @param {String} name  
-     * @param {Map} callbacks
+     * @param {Map<String, requestCallback>} callbacks
     */
     constructor(name, method="GET", callbacks= new Map())
     {
