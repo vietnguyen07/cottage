@@ -161,7 +161,7 @@ export default class ContentDisplay extends DomEle
         
         if(p_in_dict != null)
         {
-            for(key in p_in_dict.keys())
+            for(let key of p_in_dict.keys())
             {
                 this._textProcessor.set_value(key, p_in_dict.get(key));
             }
