@@ -20,6 +20,7 @@ export default class ContainerBase extends DomEle
         }
         this.actions = new ActionContainer(this);
         this.DOM = null;
+        this._build_DOM();
     }
 
     setGridTemplateArea(grid_template)
@@ -53,7 +54,7 @@ export default class ContainerBase extends DomEle
     {
         if(this.DOM)
         {
-            this.DOM.gridColumn = column_id;
+            this.DOM.style.gridColumn = column_id;
         }
     }
 

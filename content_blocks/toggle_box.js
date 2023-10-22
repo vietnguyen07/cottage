@@ -7,7 +7,7 @@ export default class ToggleBox extends TitledBlock
         super(p_name);
         this._speed = 0;
         this._close_style = [
-            ["height", "1.2em"],
+            ["height", "2em"],
             ["overflow", "hidden"],
             ["textOverflow", "ellipsis"],
             ["whiteSpace", "nowrap"]
