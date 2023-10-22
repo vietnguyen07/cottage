@@ -27,7 +27,7 @@ export default class TitledBlock extends ContainerBase
         this._textbox._build_DOM();
         this._spine._build_DOM();
 
-        this.setGridTemplateColumns('auto auto auto');
+        this.setGridTemplateColumns('max-content auto auto');
         this.setGridTemplateRows('auto auto');
         this._titlebox.setStyle([["gridColumn", "2"], ["gridRow", "1"]]);
         this._yearbox.setStyle([["gridColumn", "3"], ["gridRow", "1"], ["textAlign", "end"]]);
@@ -75,5 +75,22 @@ export default class TitledBlock extends ContainerBase
     get_spine_obj()
     {
         return this._spine;
+    }
+
+    addSubItem(p_children)
+    {
+        if (Array.isArray(p_children))
+        {
+            for (const child of p_children)
+            {
+                this.get_text_obj().addChildren([child]);
+            }
+            
+        }
+        else
+        {
+            this.get_text_obj().addChildren([p_children]);
+        }
+        this._build_DOM();
     }
 }
