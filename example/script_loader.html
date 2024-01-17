@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+    <script type="module">
+        import {default as script_loader} from "../common/script_loader.js";
+        let loader = new script_loader(document.body);
+        loader
+            .add_script("https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js")
+            .add_action(
+                (_success, _failed)=>{
+                    ClassicEditor
+                        .create( document.querySelector( '#editor' ) )
+                        .catch( error => {console.error( error );} );
+                }
+            )
+            .execute();
+    </script>
+
+</head>
+<body>
+<div id="editor"></div>
+</body>
+</html>
