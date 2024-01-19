@@ -34,7 +34,7 @@ export default class ScriptLoader {
                     _action(resolve, failed);
                 }
             );
-            await prom.then(undefined, () => { return false });
+            await prom.catch(console.error("cannot complete action" + _action));
         }
 
         return true;
