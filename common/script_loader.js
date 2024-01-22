@@ -34,7 +34,10 @@ export default class ScriptLoader {
                     _action(resolve, failed);
                 }
             );
-            await prom.catch(console.error("cannot complete action" + _action));
+            await prom.catch(
+                (error)=>{
+                    console.error("cannot complete action [" + _action + "] with error: " + error.message);
+                });
         }
 
         return true;

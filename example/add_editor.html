@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<head>
+    <script type="module">
+        import {default as script_loader} from "../common/script_loader.js";
+        import {default as editorBuilder} from "../editor/editor_creator.js";
+        
+        let editorbuilder = new editorBuilder("builder_1", document.querySelector("#editor"));
+        editorbuilder.create_editor();
+        let editorbuilder1 = new editorBuilder("builder_1", document.querySelector("#editor1"));
+        editorbuilder.create_editor();
+    </script>
+
+</head>
+<body>
+<div id="editor"></div>
+<div id="editor1"></div>
+</body>
+</html>
