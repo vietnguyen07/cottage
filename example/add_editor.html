@@ -7,13 +7,29 @@
         
         let editorbuilder = new editorBuilder("builder_1", document.querySelector("#editor"));
         editorbuilder.create_editor();
-        let editorbuilder1 = new editorBuilder("builder_1", document.querySelector("#editor1"));
-        editorbuilder.create_editor();
+
+        let ed = document.querySelector('#editor');
+        ed.background = editorbuilder;
+    </script>
+
+    <script type="module">
+        let butt = document.querySelector('#butt1');
+        butt.onclick = (event)=>{
+            let ed = document.querySelector('#editor');
+            let data = ed.background.get_data();
+            let escaped_data = encodeURIComponent(data);
+
+            console.log(data);
+            console.log(escaped_data);
+            console.log(decodeURIComponent(escaped_data));
+            console.log(event.target);
+            ed.background.set_data(escaped_data);
+        }
     </script>
 
 </head>
 <body>
-<div id="editor"></div>
-<div id="editor1"></div>
+<div id="editor" placeholder="test"></div>
+<button id="butt1" type="submit">get data</button>
 </body>
 </html>

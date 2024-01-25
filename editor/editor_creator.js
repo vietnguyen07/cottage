@@ -7,7 +7,7 @@ class EditorBase {
         this._editor = undefined;
     }
 
-    create_editor(){
+    async create_editor(p_placeholder="input text here"){
         throw new Error("virtual method! need a concrete implementation");
     }
 
@@ -28,29 +28,48 @@ class EditorBase {
 export default class MyCKEditor extends EditorBase
 {
     static script_arr = new Array();
+    static script_path = "https://cdn.ckeditor.com/ckeditor5/41.0.0/inline/ckeditor.js";
 
     constructor(p_name, p_target_element=undefined){
         super(p_name, p_target_element);
     }
 
-    async create_editor(){
+    async create_editor(p_placeholder = "input data here"){
         let actionLoader = new loader(this._target);
 
         // only load when ckeditor cdn is not included yet
-        if(typeof CKEDITOR_VERSION == 'undefined')
+        if(typeof CKEDITOR_VERSION == 'undefined' && !(MyCKEditor.script_arr.includes(MyCKEditor.script_path)))
         {
-            actionLoader.add_script("https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js");
+            MyCKEditor.script_arr.push(MyCKEditor.script_path);
+            actionLoader.add_script(MyCKEditor.script_path);
+            actionLoader.execute();
         }
 
+        // wait for until script is loaded
+        while(typeof CKEDITOR_VERSION == 'undefined' && MyCKEditor.script_arr.includes(MyCKEditor.script_path)) {
+            await new Promise(r => setTimeout(r, 200));
+        }      
+
         actionLoader
-            .add_action(this._add_editor.bind(this))
+            .add_action(()=>{this._add_editor(p_placeholder);})
             .execute();
 
     }
 
-    _add_editor(){
-        ClassicEditor
-            .create(this._target)
+    get_data(){
+        return this._editor.getData();
+    }
+
+    set_data(p_data){
+        this._editor.setData(String(p_data));
+    }
+
+    _add_editor(p_placeholder=""){
+        InlineEditor
+            .create(
+                this._target,
+                {placeholder: p_placeholder}
+            )
             .then(editor => {this._editor = editor;})
             .catch( error => {console.error( error );});
     }
